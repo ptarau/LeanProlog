@@ -24,4 +24,4 @@ hs_err_pid*
 *.iml
 lprolog.jar
 lprolog.sh
-bin/*.bp
+#bin/*.bp
