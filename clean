@@ -1,6 +1,6 @@
 pushd .
 cd bin
-rm -f lwam.bp
+#rm -f lwam.bp
 cd vm
 cd logic
 rm -f *.class

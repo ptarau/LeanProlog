@@ -24,4 +24,4 @@ hs_err_pid*
 *.iml
 #lprolog.jar # needed for butstapping
 lprolog.sh
-#bin/*.bp
+#bin/*.bp # needed for bootstrapping, unles BinProlog's bp is in the PATH
