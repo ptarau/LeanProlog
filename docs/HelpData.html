@@ -1,0 +1,519 @@
+<html><head><title>Lean Prolog Predicate Reference Guide</title></head>
+<body>
+<H1>Lean Prolog Predicate Reference Guide</H1>
+
+<b>    "#<'(Xs):</b>  sets the dcg token list to be Xs for processing by assumption grammar -- assumptions.pl",<p>
+<b>    "'#*'(X):</b>  adds 'intuitionisic' assumption *(X) to be used indefinitely by '#-' operation -- assumptions.pl",<p>
+<b>    "'#+'(X):</b>  adds 'linear' assumption +(X) to be consumed at most once, by a '#-' operation -- assumptions.pl",<p>
+<b>    "'#-'(X):</b>  consumes +(X) linear assumption or matches *(X) intuitionistic assumption -- assumptions.pl",<p>
+<b>    "'#:</b> '(X): matches X against current dcg token the assumption grammar is working on -- assumptions.pl",<p>
+<b>    "'#='(X):</b>  unifies X with any matching existing or future +(X) linear assumptions -- assumptions.pl",<p>
+<b>    "'#>'(Xs):</b>  unifies current assumption grammar token list with Xs -- assumptions.pl",<p>
+<b>    "'#?'(X):</b>  matches +(X) or *(X) assumptions without any binding -- assumptions.pl",<p>
+<b>    "-(A,B):</b>  computes the opposite value B of A, B is -A -- xbuiltins.pl",<p>
+<b>    "=..(Term,List) :</b>  called 'univ' - converts between F(X1..Xs) and [F,X1,..Xn] -- lib.pl",<p>
+<b>    "?G:</b>  debugging made simple: atoms annotated with '?' will have their evaluation traced -- meta.pl",<p>
+<b>    "A @< B :</b>  true if A is smaller than B in standard order -- sort.pl",<p>
+<b>    "A @=< B :</b>  true if A is smaller or equal than B in standard order -- sort.pl",<p>
+<b>    "A @> B :</b>  true if A is larger than B in standard order -- sort.pl",<p>
+<b>    "A @>= B :</b>  true if A is larger or equal than B in standard order -- sort.pl",<p>
+<b>    "A==B :</b>  is true if A and B are structurally the same (correesponding vars being also identical) -- sort.pl",<p>
+<b>    "A\==B :</b>  is true if A and B are not structurally the same, negation of '==' -- sort.pl",<p>
+<b>    "Agent:</b> SimpleGoal: asks Agent to run SimpleGoal - use agent_assert, agent_call for dynamic code local to the agent !!! -- agent.pl",<p>
+<b>    "Agent@SimpleGoal:</b>  calls SimpleGoal using Agent's local Db -- db.pl",<p>
+<b>    "Sym <= Val:</b>  sets a thread-local variable Sym to Val -- xbuiltins.pl",<p>
+<b>    "Sym => Val:</b>  gets value Val of a thread-local variable Sym -- xbuiltins.pl",<p>
+<b>    "Var <== Val:</b>  sets a global variable -- xbuiltins.pl",<p>
+<b>    "Var ==> Val:</b>  gets the value of a global variable -- xbuiltins.pl",<p>
+<b>    "X is E:</b>  calls arithmetic evaluator on E - result to be unified with X -- shared.pl",<p>
+<b>    "X:</b> G~>LazyList: list comprehension syntax for lazy_findall -- engine.pl",<p>
+<b>    "[File] or compile(File):</b>  from the '?-' prompt, compiles in new name space File.pl (or File.wam, if newer), sharing dynamic database -- lfix.pl",<p>
+<b>    "aTRACE(Mes):</b>  tries to write debug messages if agent_tracer is present if not locally -- agent.pl",<p>
+<b>    "abolish(F/N), abolish(F,N):</b>  discards predicate F/N, calling it later triggers an error -- db.pl",<p>
+<b>    "abolish_dynamic(F/N):</b>  discards predicate F/N, such that calling it later just fails -- db.pl",<p>
+<b>    "abs(A,B):</b>  computes absolute value B of A -- xbuiltins.pl",<p>
+<b>    "add_task(G):</b>  add to default task group a task producing instances of G -- xtask.pl",<p>
+<b>    "add_task(X,G):</b>  add to default task group a task producing answers X while running G -- xtask.pl",<p>
+<b>    "add_task(X,G,TG) :</b>  adds a task (X:-G) to a task group TG - it also creates TG, if needed -- xtask.pl",<p>
+<b>    "add_to_path(Dir):</b>  ads Dir to search path for find_file -- xbuiltins.pl",<p>
+<b>    "agent_abolish(X):</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_assert(X):</b>  when used as AgentName:agent_assert(X) asserts X into the local database of the agent -- agent.pl",<p>
+<b>    "agent_asserta(X):</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_assertz(X):</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_call(H):</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_clause(H,B):</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_clear:</b>  AgentName:agent_clear clears the agent's local database -- agent.pl",<p>
+<b>    "agent_consult(F):</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_listing:</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_name(Name):</b>  returns, to an agent, its own name, fails if not an agent -- agent.pl",<p>
+<b>    "agent_reconsult(F):</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_retract(X):</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_retract1(X):</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_retractall(X):</b>  with AgentName:... local db operation on the agent's space -- agent.pl",<p>
+<b>    "agent_self(Info):</b>  if this symbol space is an agent, it returns Info=self(Kind,Name,Host,Port), fails otherwise. -- agent.pl",<p>
+<b>    "agent_tracer:</b>  opens console at 6666 where debug messages with aTRACE can be seen - even of agents do no have consoles -- agent.pl",<p>
+<b>    "all(G,Xs):</b>  collects all matching X on the Linda blackboard -- bboards.pl",<p>
+<b>    "all(H,P,G,Xs):</b>  collects all matching X on the Linda blackboard at H:P -- linda.pl",<p>
+<b>    "all(X,Xs):</b>  gets snapshot containing all Xs matching X on Linda server -- callback_linda.pl",<p>
+<b>    "alt_findall(X,G,Xs):</b>  collects to a list Xs copies of all answers X of G using engines -- engine.pl",<p>
+<b>    "append(Xs,Ys,Zs):</b>  true if Zs is the concatenation of lists Xs and Ys -- lists.pl",<p>
+<b>    "append(Xss,Xs):</b>  Xs is the concatentation of Xss obtained by folding with append/3 -- lists.pl",<p>
+<b>    "arg(N,T,X):</b>  selects N-th argument of term T, function symbol if N=0 -- builtins.pl",<p>
+<b>    "argn(I,T,X):</b>  backtracks applying arg(I,Y,X) over all args of T (arg 0 included) -- lib.pl",<p>
+<b>    "arity(T,N):</b>  returns arity of term T -- builtins.pl",<p>
+<b>    "array_get(A,I,R):</b>  gets element I of array A -- xrefl.pl",<p>
+<b>    "array_set(A,I,E):</b>  sets element I of array A -- xrefl.pl",<p>
+<b>    "array_size(A,L):</b>  returns the number of elements of an array -- xrefl.pl",<p>
+<b>    "array_to_list(A,Is):</b>  converts an array to a list -- xrefl.pl",<p>
+<b>    "ask_agent(Name,Goal):</b>  asks named agent to run Goal -- agent.pl",<p>
+<b>    "ask_broker(Goal):</b>  runs Goal in the broker's process - calls directly if notices the broker is local - may start broker if absent -- broker.pl",<p>
+<b>    "ask_engine(Engine,Query, Result):</b>  injects Query to into Engine, which, will react to it with engine_yield(Answer) -- engine.pl",<p>
+<b>    "ask_inner_server(IServer,Answer):</b>  collects the answer from an inner server (and possibly waits until is done) -- xnet.pl",<p>
+<b>    "ask_interactor(Interactor,Query):</b>  asks an Interactor a Query -- xbuiltins.pl",<p>
+<b>    "ask_linda(H,P,G):</b>  asks Linda server on port to run Linda operation G -- linda.pl",<p>
+<b>    "ask_peer(H,P, X,G, R):</b>  after open_dialog/2, asks peer at H:P to compute G and return answer the(X) or no in R -- dialog.pl",<p>
+<b>    "assert(C):</b>  adds clause C to the database -- db.pl",<p>
+<b>    "asserta(C):</b>  adds clause C to the front of the database -- db.pl",<p>
+<b>    "assertz(C):</b>  adds clause C to end of the database -- db.pl",<p>
+<b>    "atom_codes(A,Cs):</b>  converts between an atom and a list of character codes -- shared.pl",<p>
+<b>    "atom_concat(A,B,C):</b>  true if C is the concatenation of A and B -- shared.pl",<p>
+<b>    "atom_length(Atom,Len):</b>  computes length L of an Atom -- shared.pl",<p>
+<b>    "atom_to_term(A,T):</b>  reads term T from atom A -- xio.pl",<p>
+<b>    "atom_to_term(A,T,Vs):</b>  reads term T + vars Vs from atom A -- xio.pl",<p>
+<b>    "atomic_list_concat(As,A):</b>  A is the concatentation of atomic elements on list As -- xbuiltins.pl",<p>
+<b>    "available_memory(M):</b>  computes memory still available - when reaching it Java crashes with OutOfMemory exception -- xbuiltins.pl",<p>
+<b>    "bagof(X,Vs^G,Xs) :</b>  collects list of X such that G into Xs - it may backtrack if variables not in Vs occur in G or if Vs is absent -- bagof.pl",<p>
+<b>    "between(From,To, I) :</b>  generates integers I in [From..To] -- lib.pl",<p>
+<b>    "bg(Goal,Hub):</b>  launches a background thread discarding all solutions of Goal. stop(hub) can be used to stop the thread -- xtask.pl",<p>
+<b>    "bg_clone(Goal,Hub):</b>  launches a background thread discarding all solutions of Goal and cloning current symtable - use stop(Hub) to stop it -- xtask.pl",<p>
+<b>    "bg_with(WamFileName,Goal,Hub):</b>  starts goal with code loaded from WamFileName -- xtask.pl",<p>
+<b>    "bp_terms:</b> : sets prolog_flag term_encoder in remote_run/run_server to send terms as strings that BinProlog can parse -- net.pl",<p>
+<b>    "broker_state:</b>  - in the broker process prints out the state of the broker -- broker.pl",<p>
+<b>    "builtin/3:</b>  contains specs for builtins shared with C emulator -- builtins.pl",<p>
+<b>    "call(FXs,A1,...AN) :</b>  calls a closure of the form FXs=F(X1..Xk) with A1..An appended afetr X1..Kk -- lib.pl",<p>
+<b>    "callN(FXs,Ys):</b>  adds supplementary args from list Ys to closure FXs and call resulting goal -- lib.pl",<p>
+<b>    "call_ifdef(G,AltG) :</b>  if G is compiled calls G, otherwise calls AltG -- lib.pl",<p>
+<b>    "call_java_class_method(ClassName,MethodAndArgs,Result):</b>  calls static Java method using <methodName>(A1,...An) syntax -- xrefl.pl",<p>
+<b>    "call_with(Db,Body):</b>  metainterpreter, evaluates Body using clauses from database Db -- meta.pl",<p>
+<b>    "call_with_time_limit(MSecs,(Answer:</b> -Goal): calls goal on a thread running for no more than MSecs and returns the(Answer),time_limit_exceeded or no -- xtask.pl",<p>
+<b>    "call_with_time_limit(Secs,Goal):</b>  calls goal on a thread while watching that no more than Secs time is taken in which case it fails -- xtask.pl",<p>
+<b>    "call_with_time_limit(Secs,Goal):</b>  calls goal on a thread while watching that no more than Secs time is taken in which case it throws time_limit_exceeded -- xtask.pl",<p>
+<b>    "cat_term_of(Cat,V-[Rank,Attr,Value,EdgesWithProps]):</b>  iterates over vertices V of a Cat graph -- graphs.pl",<p>
+<b>    "cat_to_terms(Cat,Terms):</b>  converts a Cat graph to a list of (attributed) Terms of the form vertex-edges -- graphs.pl",<p>
+<b>    "cc0(Mode,C0):</b>  main compiler entry point -- lco.pl",<p>
+<b>    "ccall(H,P,X,G,R):</b>  calls cserver at H:P with goal G and gets back R=the(X) or 'no' if it fails -- jlib.pl",<p>
+<b>    "change_arg(I,T,New):</b>  replaces distructively _constant_ arg I of T with New. -- xbuiltins.pl",<p>
+<b>    "char_code(Atom, Code):</b>  converts between character and character code -- shared.pl",<p>
+<b>    "cin(H,P,X):</b>  take X if on the Linda blackboard at H:P, fail otherwise -- linda.pl",<p>
+<b>    "cin(X):</b>  take X if on the Linda blackboard, fail otherwise -- bboards.pl",<p>
+<b>    "clause(H,B):</b>  true if clause C=(H:-B) is in the database -- db.pl",<p>
+<b>    "clean_up_publishing:</b>  removes everything published as well as tracking of subscribers -- publishing.pl",<p>
+<b>    "clear_path:</b>  clears search path for find_file -- xbuiltins.pl",<p>
+<b>    "close(Stream):</b>  closes stream -- xio.pl",<p>
+<b>    "close_agent(AgentConnection):</b>  closes exclusive, efficient connection with other agent -- agent.pl",<p>
+<b>    "close_dialog(MyHost,MyPort,YourHost,YourPort):</b>  closes high-volume communication channel -- dialog.pl",<p>
+<b>    "close_dialog(MyPort,YourPort):</b>  closes communication channel on localhost -- dialog.pl",<p>
+<b>    "close_gui_printer(Name):</b>  close an output enabled GUI window -- gui.pl",<p>
+<b>    "close_list(Bag,Xs):</b>  moves all elements of Bag to Prolog list Xs. Bag is still usable for new lis_adds. -- xbuiltins.pl",<p>
+<b>    "code_of(File,C):</b>  backtracks over char codes in File -- xio.pl",<p>
+<b>    "codes_words(Cs,Ws):</b>  parses/unparses list of codes to/from words -- xio.pl",<p>
+<b>    "compare(R,X,Y) :</b>  true if R (<,=,>) expresses the standard order between X,Y -- sort.pl",<p>
+<b>    "compile(InFile,OutFile):</b>  compiles InFile.pl to OutFile.bp - including builtins -- lfix.pl",<p>
+<b>    "compile_mt(Files,OutFile):</b>  compiles Files together with built-ins concurrently and merges the results to OutFile - a .bp file -- lfix.pl",<p>
+<b>    "concat_atom(As,A):</b>  concatenates atoms on list As to A -- xlib.pl",<p>
+<b>    "concatenate_files(Fs,F):</b>  concatenates list of files Fs to file F -- xbuiltins.pl",<p>
+<b>    "consult(F):</b>  asserts all clauses if F to defaul database -- db.pl",<p>
+<b>    "consume_new(Subscriber,Channel,Content):</b>  reads next message on Channel - Content expected to be a free variable -- publishing.pl",<p>
+<b>    "copy_term(T,CT):</b>  creates copy of term T with fresh variables -- engine.pl",<p>
+<b>    "cputime(T):</b>  computes time since beginning of seesion in ms -- xbuiltins.pl",<p>
+<b>    "crossref_warnings:</b>  prints crossref warning when compiling to memory -- lfix.pl",<p>
+<b>    "ctr_add(Ctr,X):</b>   adds value X to Ctr -- xbuiltins.pl",<p>
+<b>    "ctr_dec(Ctr,X):</b>  decrements Ctr -- xbuiltins.pl",<p>
+<b>    "ctr_get(Ctr,X):</b>  gets current value X of Ctr -- xbuiltins.pl",<p>
+<b>    "ctr_inc(Ctr,X):</b>  increments Ctr -- xbuiltins.pl",<p>
+<b>    "current_atom(A):</b>  backtracks over all atoms (warning: it also keeps them alive!) -- xrefl.pl",<p>
+<b>    "current_compiled(F/N):</b>  backtracks over all compiled predicates -- xrefl.pl",<p>
+<b>    "current_dir(D):</b>  returns current directory -- xbuiltins.pl",<p>
+<b>    "current_dynamic(F/N):</b>  backtracks over all dynamic predicates -- xrefl.pl",<p>
+<b>    "current_engine(Handle) :</b>  returns Handle Java object representing current engine -- builtins.pl",<p>
+<b>    "current_input(Stream) :</b>  returns current input stream -- xio.pl",<p>
+<b>    "current_non_atom(A):</b>  backtracks over all unusual symbols - engines, bignums, other Java objects etc. -- xrefl.pl",<p>
+<b>    "current_op(Pri,Assoc,Op):</b>  lists/checks what current operators are in effect -- xbuiltins.pl",<p>
+<b>    "current_output(Stream):</b>  returns current output stream -- xio.pl",<p>
+<b>    "current_predicate(F/N) :</b>  true if predicate F/N is compiled or has a definition in the database -- xrefl.pl",<p>
+<b>    "current_prolog_flag(F,X):</b>  sets Prolog flag -- xlib.pl",<p>
+<b>    "current_symbol(Sym):</b>  gets the list of all atoms from the symbol table - note that it also means it keeps them alive! -- xbuiltins.pl",<p>
+<b>    "db_assert, db_retract etc:</b>  same as assert, retract but extra first argument names a database on which they act -- db.pl",<p>
+<b>    "db_clear(Db) :</b>  clears all caluses of database Db -- db.pl",<p>
+<b>    "db_clear:</b>  removes all clauses from database -- db.pl",<p>
+<b>    "db_dynamic, db_is_dynamic, db_abolish :</b>  same as their counterparts wihtouh 'db_', except that extra first argument names a database on which they act -- db.pl",<p>
+<b>    "db_save(Db,F):</b>  saves database Db to plain text file F (with no guaranty that it can be read back!) -- db.pl",<p>
+<b>    "default_broker(H,P):</b>  returns host,port where the broker listens, override with broker_host<==..., broker_port<==... -- broker.pl",<p>
+<b>    "default_port (ServerPort):</b>  returns default server port -- xnet.pl",<p>
+<b>    "delete_directory(D):</b>  deletes a directory in current directory -- xbuiltins.pl",<p>
+<b>    "delete_file(F):</b>  deletes a file in current directory -- xbuiltins.pl",<p>
+<b>    "det_call(G):</b>  signals error if G has more than one answer -- compat.pl",<p>
+<b>    "dir_or_file(DorF,Dir,X):</b>  iterates over directories (when DorF=0) or files (when DorF=1) in Dir -- xbuiltins.pl",<p>
+<b>    "dirs(Dir,Ds):</b>  collects list Ds of direcories in Dir -- xbuiltins.pl",<p>
+<b>    "dirs(Ds):</b>  collects list Ds of direcories in current directory -- xbuiltins.pl",<p>
+<b>    "dismantle_engine(E):</b>  stops and dismantles an engine - no future reference to it should be made !!! -- engine.pl",<p>
+<b>    "dq_add/3, dq_remove/3, dq_is_empty/1:</b>  difference list queue operations -- engine.pl",<p>
+<b>    "drop(N,Xs,Ys):</b>  drops the first N elements of list Xs and returns the left over elements Ys -- lists.pl",<p>
+<b>    "drop_at_least(N,G):</b>  drops at least the first N answers of G -- compat.pl",<p>
+<b>    "dynamic(F/N):</b>  ensures predicate F/N will is dynamic - it is ok to call such predicates even if none has been asserted -- db.pl",<p>
+<b>    "element_of(Interactor,X):</b>  backtracks over all answers returned by Interactor (possibly an engine) -- engine.pl",<p>
+<b>    "engine(T):</b>  recognizes type of an engine -- lib.pl",<p>
+<b>    "engine_yield(Answer):</b>  reacts to ask_engine(Engine,Query, Result) by calling from_engine and then returning Answer -- engine.pl",<p>
+<b>    "ensure_number(Num,MaybeBignum):</b>  converts, if needed string or $number(N) to BigInteger or BigDecimal -- xbuiltins.pl",<p>
+<b>    "errmes(Message,Culprit):</b>  generates error message -- engine.pl",<p>
+<b>    "exists_file(F):</b>  true if F exists -- xbuiltins.pl",<p>
+<b>    "external_engine(Source,E):</b>  creates a Prolog code space + engine from a *.bp file or a (memory) file reader -- xlib.pl",<p>
+<b>    "false:</b>  same as fail, fails always -- shared.pl",<p>
+<b>    "file agent.pl:</b>  agent API -- agent.pl",<p>
+<b>    "file compat.pl:</b>  various backward comaptibility extensions -- compat.pl",<p>
+<b>    "files(Dir,Fs):</b>  collects list Fs of files that are not directories in Dir -- xbuiltins.pl",<p>
+<b>    "files(Fs):</b>  collects list Fs of files that are not directories in current directory -- xbuiltins.pl",<p>
+<b>    "find_at_most(N,X,G,Xs):</b>  collects, like, findall, at most K answers X of G to Xs -- compat.pl",<p>
+<b>    "find_file(Prefs,File,Sufs,NewFile):</b>  finds File with name prefixed and suffixed as NewFile -- xio.pl",<p>
+<b>    "find_free_port(BasePort,MaxTry,FreePort):</b>  tries to find free port starting from BasePort up to BasePort+MaxTry -- xnet.pl",<p>
+<b>    "find_free_port(P):</b>  finds a free port starting from 500 and trying out the next 100 ports -- xnet.pl",<p>
+<b>    "find_while(C,X,G,Xs):</b>  answer_stream to list converters -- compat.pl",<p>
+<b>    "findall(X,G,Xs):</b>  collects to a list Xs copies of all answers X of G using engines -- engine.pl",<p>
+<b>    "findall(X,G,Xs,End):</b>  collects to a list Xs copies of all answers X of G concatenated with list End -- engine.pl",<p>
+<b>    "float_fractional_part(X,Y):</b>  gets the fractional part of a float number -- xbuiltins.pl",<p>
+<b>    "float_integer_part(X,Y):</b>  gets the integer part of a float number -- xbuiltins.pl",<p>
+<b>    "foldall(F,X^Generator,R):</b>  combines 2 by 2 answers X of Generator, by applying closure F -- engine.pl",<p>
+<b>    "foldl(F,Z,Xs,R):</b>  combines with F all members of Xs, from left to right, starting with Z -- lists.pl",<p>
+<b>    "foldl(F,Z,Xs,R):</b>  combines with F all members of Xs, from right to left, starting with Z -- lists.pl",<p>
+<b>    "for(I,A,B):</b>  generates ints I in [A..B] -- xlib.pl",<p>
+<b>    "forall(G1,G2):</b>  true if forall G1, G2 -- shared.pl",<p>
+<b>    "foreach(When,Then) :</b>  evaluates once(Then) for each success of When (works by its side effects) -- shared.pl",<p>
+<b>    "from_engine(Term) :</b>  retrieves Term sent to this Engine -- builtins.pl",<p>
+<b>    "from_file(F,T):</b>  loads (large term T, possibly containing serilizable Java objects) from file F -- xbuiltins.pl",<p>
+<b>    "from_linear(CT,T):</b>  converts a term back to normal Prolog representation -- cserver.pl",<p>
+<b>    "fun(F,N,T):</b>  creates term T of arity N with function symbol F -- builtins.pl",<p>
+<b>    "functor(T,F,N):</b>  extracts F/N from F(X1...XN) and/or creates aterm with arity N and function symbol F -- lib.pl",<p>
+<b>    "gensym(S,X):</b>  generates news symbols on ecah call X=S1,X=S2... etc -- xbuiltins.pl",<p>
+<b>    "gensym_no(Base,N):</b>  gets next N associated to symbol Base - local to symbol table -- xbuiltins.pl",<p>
+<b>    "get(Interactor,Result) :</b>  collects a result computed by an Interactor (an engine in particular) -- engine.pl",<p>
+<b>    "get_agent_info(Name,Host,Port,Kind):</b>  gets from the broker Host,Port,Kind info about named agent -- broker.pl",<p>
+<b>    "get_all_agents(Names):</b>  gets the list of all agents managed by this broker -- broker.pl",<p>
+<b>    "get_cmd_line_args(Terms):</b>  returns the list of arguments received on the command line -- xbuiltins.pl",<p>
+<b>    "get_code(C):</b>  reads a char code from current input stream -- xio.pl",<p>
+<b>    "get_code(I,C):</b>  reads a char code from interactor/input stream I -- xio.pl",<p>
+<b>    "get_encoding(Encoding):</b>  gets char encoding -- xlib.pl",<p>
+<b>    "get_java_class(O,Class):</b>  get the a handle to the class to which object O is an instance -- xrefl.pl",<p>
+<b>    "get_java_class_field(ClassName,FieldName,Val):</b>  gets the content Val of a (public) static Java field -- xrefl.pl",<p>
+<b>    "get_java_field(Object,FieldName,Val):</b>  get the content Val of a (public) Java field -- xrefl.pl",<p>
+<b>    "get_java_field_handle(Obj,FieldName,FieldHandle):</b>  returns handle to FieldName in object Obj -- xbuiltins.pl",<p>
+<b>    "global_gensym(S,X):</b>  generates news symbols on ecah call X=S1,X=S2... etc - global to process -- xbuiltins.pl",<p>
+<b>    "global_gensym_no(Base,N):</b>  gets next N associated to symbol Base - global to process -- xbuiltins.pl",<p>
+<b>    "ground(X):</b>  true if X contains no unbound variables -- lib.pl",<p>
+<b>    "gvar(V):</b>  backtracks over names of all global vars V -- xbuiltins.pl",<p>
+<b>    "gvar_get(Var,Val):</b>  gets Val of global Var as in Var ==> Val -- xbuiltins.pl",<p>
+<b>    "gvar_remove(Var):</b>  removes a global variable -- xbuiltins.pl",<p>
+<b>    "gvar_set(Var,Val):</b>  sets global Var to Val as in Var <== Val -- xbuiltins.pl",<p>
+<b>    "gvars(Vs):</b>  gets list of all gvars -- xbuiltins.pl",<p>
+<b>    "gvars:</b>  lists all gvars and their values -- xbuiltins.pl",<p>
+<b>    "here(Host,Port):</b>  sets a pair Host,Port where a server is running as the callback address of this process -- callback_linda.pl",<p>
+<b>    "here(Port):</b>  same as here(localhost,Port) -- callback_linda.pl",<p>
+<b>    "hkey(Mod,T,N):</b>  computes for term T a hash key N in 0..Mod-1 -- xbuiltins.pl",<p>
+<b>    "hub(H):</b>  creates a hub - an interactor used to synchronize threads -- xbuiltins.pl",<p>
+<b>    "i_call(S,G):</b>  runs goal G on inner server S -- xnet.pl",<p>
+<b>    "i_call(S,X,G,R):</b>  runs G on inner server S returning R=the(X) or no if it fails -- xnet.pl",<p>
+<b>    "i_halt(S):</b>  stops inner server with handle S -- xnet.pl",<p>
+<b>    "i_run_at(C,G):</b>  runs goal G at connection C on inner server -- xnet.pl",<p>
+<b>    "i_run_at(C,X,G,R):</b>  runs goal G at connection C on inner server returns R=the(X) or no if it fails -- xnet.pl",<p>
+<b>    "i_server(BPFile,Goal,Handle):</b>  runs inner server initialize with Goal, based on alternate *.bp file as starting point -- xnet.pl",<p>
+<b>    "i_server(Goal,S):</b>  runs inner server S after initial Goal run in the context of the inner server -- xnet.pl",<p>
+<b>    "i_server(S):</b>  creates internal emulation of socket server - returns handle S instead of running on a port -- xnet.pl",<p>
+<b>    "i_stop(C):</b>  stops innter server at connection C -- xnet.pl",<p>
+<b>    "icall, icall_op, icall_impure:</b>  bridges to fast internal builtins called directly from emulator -- builtins.pl",<p>
+<b>    "in(H,P,X):</b>  waits until out(X) makes X available on the Linda blackboard at H:P -- linda.pl",<p>
+<b>    "in(X):</b>  waits until out(X) makes X available on the Linda blackboard -- bboards.pl",<p>
+<b>    "included_file_of(File,Included):</b>  iterates over all files included with statemts of the form :-[F1,...Fn] in File -- xio.pl",<p>
+<b>    "index(Spec):</b>  indexes arg positions marked 1 in Spec ; index implies dynamic as it only indexes dynamics -- db.pl",<p>
+<b>    "init(Xs,AllButLast):</b>  returns all but the last element of a list -- lists.pl",<p>
+<b>    "init_publishing(ContentIndexings):</b>  sets up indexing using list of ContentIndexings of the form pred(1/0,1/0...) -- publishing.pl",<p>
+<b>    "init_publishing:</b>  sets up default initial assumptions for publishing -- publishing.pl",<p>
+<b>    "inner_server_loop(In,Out):</b>  loops consuming data from hub In and returning answers to hub Out -- xnet.pl",<p>
+<b>    "int_sqrt(N,R):</b>  computes integer square root R of N, using Newton's method -- xbuiltins.pl",<p>
+<b>    "interactor(T):</b>  recognizes type of an interactor -- lib.pl",<p>
+<b>    "invoke_array_method(MethodAndArgs,R):</b>  calls static Array class methods -- xrefl.pl",<p>
+<b>    "invoke_java_method(Cls,Obj,MethName,Args,Answer):</b>  invokes a java method in class Cls on Object Obj -- xbuiltins.pl",<p>
+<b>    "invoke_java_method(ObjectOrClass,MethodName,Result) :</b>  calls Java method using <methodName>(A1,...An) syntax -- xrefl.pl",<p>
+<b>    "is_compiled(F(X1..XN)) :</b>  true if F/N it is a compiled predicate -- builtins.pl",<p>
+<b>    "is_dir(D):</b>  true if D is a subdirectory in current directory -- xbuiltins.pl",<p>
+<b>    "is_dynamic(H):</b>  checks if a predicate H=F(X1..Xn) is dynamic -- db.pl",<p>
+<b>    "is_engine(E) :</b>  true if E is an engine -- engine.pl",<p>
+<b>    "is_false(B):</b>  checks if a Boolean returned by Java represents false -- xrefl.pl",<p>
+<b>    "is_file(F):</b>  true if F is a file in current directory -- xbuiltins.pl",<p>
+<b>    "is_interactor(E) :</b>  true if E is an interactor (LogicInteractor - a kind of engine , in particular) -- engine.pl",<p>
+<b>    "is_list(X):</b>  true if X is instantiated to a list -- lists.pl",<p>
+<b>    "is_prolog(Prolog):</b>  tells which Prolog is this: returns lprolog -- xtop.pl",<p>
+<b>    "is_quoted_number(N):</b>  recognizes that N is a quoted number like '1111'. This information is optimized away by the compiler. -- shared.pl",<p>
+<b>    "is_true(B):</b>  checks if a Boolean returned by Java represents true -- xrefl.pl",<p>
+<b>    "java_terms:</b> : sets prolog_flag term_encoder in remote_run/run_server such that serialized terms are sent - avoiding parsing -- net.pl",<p>
+<b>    "keygroup(KsVs,Keys,Vals):</b>  keysorts KsVs, then backtrack over groups of the form Key,Vals -- sort.pl",<p>
+<b>    "keysort(KVs,NewKVs):</b>  sorts by keys, a list of Key-Value pairs -- sort.pl",<p>
+<b>    "kill_agent_group(Name) :</b>  shuts down in a orderly manner all agents in the process controlled by Name -- agent.pl",<p>
+<b>    "kill_agent_process(Name):</b>  kills process running and agent as well as all data related to it on the broker -- agent.pl",<p>
+<b>    "kill_my_process(Process):</b>  kills process started with system/5 -- sys.pl",<p>
+<b>    "last(Xs,X):</b>  picks X, the last element of list Xs -- lists.pl",<p>
+<b>    "lazy_drop(N):</b>  to be used with DCGs - drops first N of lazy stream, advances if needed -- engine.pl",<p>
+<b>    "lazy_findall(X,G,LazyList):</b>  creates LazyList to be explored using DCG syntax with lazy_take,lazy_drop etc. -- engine.pl",<p>
+<b>    "lazy_get_state(Xs) :</b>  to be used with DCGs - gets current lazy stream -- engine.pl",<p>
+<b>    "lazy_head(X):</b>  to be used with DCGs - gets head X of lazy stream, advances if needed -- engine.pl",<p>
+<b>    "lazy_set_state(X,G):</b>  used with DCGs - sets stream to L such that X:G~>L. -- engine.pl",<p>
+<b>    "lazy_tail:</b>  to be used with DCGs - consumes head of lazy stream, advances if needed -- engine.pl",<p>
+<b>    "lazy_take(N,Xs):</b>  to be used with DCGs - gets first N of lazy stream as Xs, advances if needed -- engine.pl",<p>
+<b>    "lco:</b>  bootstrapping - self compiles by compiling ../psr/top.pl to ../bin/wam.bp -- lfix.pl",<p>
+<b>    "length(Xs,L):</b>  true if the length of list Xs is L - generates Xs if needed -- lib.pl",<p>
+<b>    "linda_client(CallBackPort):</b>  starts Linda client and waits to connect to default server -- callback_linda.pl",<p>
+<b>    "linda_client(ServerH,ServerP,MyH,MyP):</b>  starts Linda client and waits to connect to ServerH:ServerP and be called back at MyH:MyP -- callback_linda.pl",<p>
+<b>    "linda_client(ServerH,ServerP,MyH,MyP,Goal):</b>  starts Linda client with Goal and waits to connect to ServerH:ServerP and be called back at MyH:MyP -- callback_linda.pl",<p>
+<b>    "linda_client(ServerP,MyP):</b>  starts Linda client and waits to connect to ServerP and be called back at MyP on localhost -- callback_linda.pl",<p>
+<b>    "linda_in(X):</b>  waits until X is put on Linda server when it is called back at port defined with linda_client/4 -- callback_linda.pl",<p>
+<b>    "linda_server(Port):</b>  start linda server on Port -- callback_linda.pl",<p>
+<b>    "linda_server:</b>  starts linda server on default port -- callback_linda.pl",<p>
+<b>    "line_codes_of(File,Cs):</b>  backtracks over lines seen as lists of char codes in File -- xio.pl",<p>
+<b>    "line_of(File,C):</b>  backtracks over lines in File -- xio.pl",<p>
+<b>    "list_to_array(Xs,A):</b>  converts a list to an array -- xrefl.pl",<p>
+<b>    "listing:</b>  list all clauses from default database -- db.pl",<p>
+<b>    "listings:</b>  list clauses from all databases -- db.pl",<p>
+<b>    "load(Name):</b>  loads the set of datbases from a saved snapshot Name.px -- db.pl",<p>
+<b>    "lprolog(Dir,Args,FinalCmd, Process,Output):</b>  runs new lean Prolog process in Dir and returns the Process id and its Output -- agent.pl",<p>
+<b>    "lprolog(Dir,Args0,Output):</b>  launches an lprolog process in Dir, with Args - it is assumed the user will halt it remotely -- agent.pl",<p>
+<b>    "ls:</b>  (also dir) lists current directory -- xbuiltins.pl",<p>
+<b>    "make_directory(D):</b>  makes a directory in current directory -- xbuiltins.pl",<p>
+<b>    "maplist(F,Xs1,Xs2,...):</b>  applies F to elements in the same position in Xs1,Xs2.. -- lists.pl",<p>
+<b>    "max_cores(M):</b>  returns the maximum numbers of CPUs available to this JVM as seen by the OS -- xbuiltins.pl",<p>
+<b>    "max_memory(M):</b>  returns max memory in Mbytes available to this Java VM -- xbuiltins.pl",<p>
+<b>    "mbg(Goals):</b> : launches Goals in parallel and waits until all of them terminate - note this ignores the answers they produce -- xtask.pl",<p>
+<b>    "mbg(Tasks,Result):</b>  launches a list of tasks [...(X:-G)...] on independent threads and collects their results X one at a time -- xtask.pl",<p>
+<b>    "mbg/2 example:</b>  ?- mbg([(I:-for(I,1,3)),(J:-member(J,[a,b]))],R). % note - similar to multi_all/2, except that in iterates -- xtask.pl",<p>
+<b>    "multi_all(XGs,Xs):</b>  runs list of goals XGs of the form Xs:-G ant collects all answers to a list -- xtask.pl",<p>
+<b>    "multi_all(XGs,Xs):</b>  runs list of goals XGs of the form Xs:-G ant collects all answers to a list -- xtask.pl",<p>
+<b>    "multi_best(F,XGs,M):</b>  runs list of goals XGs of the form N:-G where N is a number and extracts the max M -- xtask.pl",<p>
+<b>    "multi_findall(XGs,Xss):</b>  for each (X:-G) it runs in parallel a findall(X,G,Xs) goal and collects a list of list of answers Xss -- xtask.pl",<p>
+<b>    "multi_first(K,XGs,Xs):</b>  runs list of goals XGs of the form Xs:-G until the first K answers Xs are found - or fewer if less then K -- xtask.pl",<p>
+<b>    "multi_first(XGs,X):</b>  runs list of goals XGs of the form Xs:-G until a first answer X is found -- xtask.pl",<p>
+<b>    "multi_fold(F,XGs,Xs):</b>  runs list of goals XGs of the form Xs:-G and collects all answers to a list -- xtask.pl",<p>
+<b>    "new_agent(Name):</b>  creates an agent in new GUI window that uses s_call+s_server -- agent.pl",<p>
+<b>    "new_agent:</b>  creates an agent called agent0, agent1, ... in new GUI window that uses s_call+s_server -- agent.pl",<p>
+<b>    "new_array(ClassName,Dim,Array):</b>  makes a new array to hold Dim elements from class ClassName -- xrefl.pl",<p>
+<b>    "new_ctr(Ctr):</b>  creates a new couter initialized at 0 -- xbuiltins.pl",<p>
+<b>    "new_engine(Engine,X,G):</b>  loades an engine with goal G returning instance of 'the'(X) or 'no' as answer -- engine.pl",<p>
+<b>    "new_engine(X,G,Engine):</b>  creates engine with goal G returning instance of 'the'(X) or 'no' as answer -- engine.pl",<p>
+<b>    "new_inner_server(IServer):</b>  creates an inner server consisting of thread and 2 hubs -- xnet.pl",<p>
+<b>    "new_interactor(Class,Initializer,Handle):</b>  creates a new Interactor from and Intractor Class -- xbuiltins.pl",<p>
+<b>    "new_java_class(Name,Cls):</b>  returns handle to (public) Java class Cls from Name (package included!) -- xbuiltins.pl",<p>
+<b>    "new_java_object(ClassAndArgs,Object):</b>  makes new Java Object from Class -- xrefl.pl",<p>
+<b>    "new_java_object(Cls,Args,Obj):</b>  calls a Java constructor with Args on Cls and returns a handle Obj -- xbuiltins.pl",<p>
+<b>    "new_logic_thread(Hub,X,G):</b>  a new logic threrad, sharing this symbol table is created - disables SYMGC -- xbuiltins.pl",<p>
+<b>    "new_logic_thread(Hub,X,G,Clone,Source):</b>  creates a new thread by Cloning current Prolog or loading new Prolog from Source -- xbuiltins.pl",<p>
+<b>    "new_m_agent(Name):</b>  creates an agent in current window using remote_run+run_server -- agent.pl",<p>
+<b>    "new_s_agent(Name):</b>  creates an agent in current window that uses s_call+s_server - use stop_agent to stop it -- agent.pl",<p>
+<b>    "new_s_agent(Name):</b>  creates an agent in new GUI window that uses s_call+s_server -- agent.pl",<p>
+<b>    "newer_file_of(F1,F2,Newer):</b>  pick newer file among F1 and F2 -- xbuiltins.pl",<p>
+<b>    "next_of(NextIterator,E):</b>  generic iterator interface - assuming it implements next() returning null at end -- xrefl.pl",<p>
+<b>    "nl(Stream):</b>  writes newline to stream -- xio.pl",<p>
+<b>    "notify_about(H,P,Pattern):</b>  notify a thread waiting for Pattern on the Linda blackboard at H:P that it is now available -- linda.pl",<p>
+<b>    "notify_about(Pattern):</b>  notify a thread waiting for Pattern on the Linda balckboard that it is now available -- bboards.pl",<p>
+<b>    "nth1(N,Xs,X):</b>  picks N-th element X starting from 1 occuring in Xs -- lists.pl",<p>
+<b>    "nth_answer(N,G):</b>  gives only the N-th answer of G -- compat.pl",<p>
+<b>    "number_codes(A,Cs):</b>  converts between an number and a list of character codes -- shared.pl",<p>
+<b>    "numbervars(T,N0,N):</b>  Replaces free vars with '$VAR'(N) starting from N0 ending with N that is computed -- lib.pl",<p>
+<b>    "numlist(Min,Max,Ns):</b>  generates list of ints between Min and Max -- xlib.pl",<p>
+<b>    "open(File,Mode,Stream):</b>  opens a file in given mode, returning a stream -- xio.pl",<p>
+<b>    "open_agent(Name,AgentConnection):</b>  open exclusive, efficient connection with agent, on which ask_agent is used -- agent.pl",<p>
+<b>    "open_dialog(MyHost,MyPort,YourHost,YourPort):</b>  opens a dedicated high-volume communication channel -- dialog.pl",<p>
+<b>    "open_dialog(MyPort,YourPort):</b>  opens a dedicated high-volume communication channel on localhost -- dialog.pl",<p>
+<b>    "open_gui_printer(Name):</b>  opens an output enabled GUI window -- gui.pl",<p>
+<b>    "open_list(Bag):</b>  creates a persistent list -- xbuiltins.pl",<p>
+<b>    "ord_difference/3:</b>  computes the difference of two ordered sets -- sort.pl",<p>
+<b>    "ord_intersection/3:</b>  computes the intersection of two orderd sets -- sort.pl",<p>
+<b>    "ord_subset/2:</b>  checks if the first ordered set is included in the second -- sort.pl",<p>
+<b>    "ord_union/3:</b>  computes the union of two orderd sets -- sort.pl",<p>
+<b>    "other_object(T):</b>  recognizes type of some Java objects other than engines, interactors etc. -- lib.pl",<p>
+<b>    "out(Data):</b>  puts Data on the blackboard and notifies a waiting in(MatchingPattern) -- bboards.pl",<p>
+<b>    "out(H,P,X):</b>  puts X to Linda blackboard at H:P and triggers a matching in/3 -- linda.pl",<p>
+<b>    "out(X):</b>  puts X on the Linda server possibly triggering waiting in/1 on another client -- callback_linda.pl",<p>
+<b>    "parse_tokens(Ts,Vs,L1,L2,Term):</b>  parses tokens into term writes out syntax eror from L1 to L2 if fails to -- xio.pl",<p>
+<b>    "partition(Pred, Xs, Included, Excluded):</b>  separates Xs in two lists using Pred -- lists.pl",<p>
+<b>    "path_element(P):</b>  backtracks over path elements P -- xio.pl",<p>
+<b>    "path_elements(Dirs):</b>  returns the list of directories in search path -- xbuiltins.pl",<p>
+<b>    "peek_at_published(ContentPattern, Matches):</b>  searches for published content independently of having read it alredy -- publishing.pl",<p>
+<b>    "ping_agent(Name):</b>  succeeds is named agent is running -- agent.pl",<p>
+<b>    "predicate_property(Pred,Prop):</b>  true if Pred=F(X1...Xn) has property Prop -- xrefl.pl",<p>
+<b>    "println(T):</b>  prints term T + nl to cirrent output -- xio.pl",<p>
+<b>    "protect_engine(S):</b>  makes sure engine S is never garbage collected -- xbuiltins.pl",<p>
+<b>    "publish(Channel,Content):</b>  -- publishing.pl",<p>
+<b>    "publishing API:</b>  induces no suspension - can be used with scall and open_dialog, close_dialog -- publishing.pl",<p>
+<b>    "put_code(Stream,C):</b>  write character of given code to stream -- xio.pl",<p>
+<b>    "pwd:</b>  prints out current directory -- xbuiltins.pl",<p>
+<b>    "qcompile(File) :</b>  when used from Java cmd line acts like if compile(File) was typed at '?-' prompt -- lfix.pl",<p>
+<b>    "rd(H,P,X):</b>  wait until a matching X is on the Linda blackboard at H:P -- linda.pl",<p>
+<b>    "rd(X):</b>  wait until a matching X is on the Linda blackboard -- bboards.pl",<p>
+<b>    "read_string(I,S):</b>  reads from interactor I, a line as a symbol without printing any prompt -- xio.pl",<p>
+<b>    "read_string(S):</b>  reads from current input, a line as a symbol without printing any prompt -- xio.pl",<p>
+<b>    "read_words(Stream,Words):</b>  reads words from stream -- xio.pl",<p>
+<b>    "readln(T):</b>  reads line from current input stream -- xio.pl",<p>
+<b>    "reconsult(F):</b> cleans defautl database and then asserts all clauses if F to defaul database -- db.pl",<p>
+<b>    "reconsult_string(String):</b>  reconsults clauses by parsing string -- gui.pl",<p>
+<b>    "remdup(Multiset,Set) :</b>  removes duplicates from a sorted list Multiset -- sort.pl",<p>
+<b>    "remote_ping(Host,Port) :</b>  true if classic server at Host,Port is up and running -- net.pl",<p>
+<b>    "remote_run(H,P,G):</b>  runs G remotely on classic server at H,P - beware that it only handles small data !!! -- net.pl",<p>
+<b>    "remote_run(H,P,X,G,R):</b>  runs a G remotely on classic server at H,P return R=the(X) or no if it fails -- net.pl",<p>
+<b>    "remote_wait(Host,Port):</b>  waits until server on Host:Port is on -- net.pl",<p>
+<b>    "remove_val(Sym):</b>  removes attribute of symbol Sym -- xbuiltins.pl",<p>
+<b>    "rename_file(Old,New):</b>  renames a file -- xbuiltins.pl",<p>
+<b>    "reset_gensym(Base):</b>  resets gensym asocciated to base -- xbuiltins.pl",<p>
+<b>    "reset_global_gensym(Base):</b>  resets gensym asocciated to base - global to process -- xbuiltins.pl",<p>
+<b>    "retract(H):</b>  retracts clauses with head unifying with H from the database, one at a time -- db.pl",<p>
+<b>    "retract1(H):</b>  retracts (at most) one clause with head unifying with H from the database -- db.pl",<p>
+<b>    "retractall(H):</b>  retracts all clauses with head unifying with H from the database -- db.pl",<p>
+<b>    "reverse(Xs,Ys) :</b>  Ys is Xs reversed -- lists.pl",<p>
+<b>    "rselect/3:</b>  like select/3 but starts with the last one -- lists.pl",<p>
+<b>    "run_linda_server(Port):</b>  starts Linda server on Port -- linda.pl",<p>
+<b>    "run_server(Port):</b>  starts classic server on Port -- net.pl",<p>
+<b>    "run_tasks(TG,Result):</b>  runs all tasks in group TG and collects all results one a time ; it fails when no results are left -- xtask.pl",<p>
+<b>    "s_call(Host,Port,X,G,R):</b>  remote call to Host:Port to run G returning R= the(X), no or exception -- xnet.pl",<p>
+<b>    "s_connection(Host,Port,Connection):</b>  opens socket Connection to Host:Port -- xbuiltins.pl",<p>
+<b>    "s_disconnect(Connection):</b>  closes socket connection -- xbuiltins.pl",<p>
+<b>    "s_halt(Host,Port):</b>  halts server -- xnet.pl",<p>
+<b>    "s_halt_at(Connection):</b>  halts the process hosting the server on Connection -- xnet.pl",<p>
+<b>    "s_ping(Host,Port):</b>  tests if server on Host:Port is on -- xbuiltins.pl",<p>
+<b>    "s_run_at(AgentConnection,X,G,R):</b>  tells agent at Connection to run G returning the(X), no or exception -- agent.pl",<p>
+<b>    "s_run_at(Connection,X,G,R):</b>  remote call on Connection to run G returning the(X), no or exception -- xnet.pl",<p>
+<b>    "s_server(Port,BPFile,Goal):</b>  starts socket server on Port and runs Goal on it using compiled BPFile -- xnet.pl",<p>
+<b>    "s_server(Port,Goal):</b>  starts socket server on Port and runs Goal on it -- xnet.pl",<p>
+<b>    "s_stop(Host,Port):</b>  stops server at Host:Port without halting the process in which it runs -- xnet.pl",<p>
+<b>    "s_stop_at(Connection):</b>  stops the server on Connection -- xnet.pl",<p>
+<b>    "s_wait(Host,Port):</b>  waits until server on Host:Port is on -- xnet.pl",<p>
+<b>    "save(Name):</b>  saves a snapshot of all databases to file Name.px -- db.pl",<p>
+<b>    "select(X,Xs,Ys) :</b>  pulls out an element X from list Xs returning the others as Ys -- lists.pl",<p>
+<b>    "select_nonvar/3:</b>  like select/3 but checks that list ends in a nonvar -- lists.pl",<p>
+<b>    "sentence_of(F,ListOfWords):</b>  bactkracks over sentences terminated with .!? in a file returning ListOfWords -- compat.pl",<p>
+<b>    "set_default_broker(Host,Port):</b>  sets default broker for THIS process -- broker.pl",<p>
+<b>    "set_default_broker(Port):</b>  sets default broker to Port on localhost fort THIS process -- broker.pl",<p>
+<b>    "set_encoding(Encoding):</b>  sets char encoding -- xlib.pl",<p>
+<b>    "set_input(Stream) :</b>  sets current input stream -- xio.pl",<p>
+<b>    "set_java_class_field(ClassName,FieldName,NewVal):</b>  sets a static field of a named class to NewVal -- xrefl.pl",<p>
+<b>    "set_java_field(Object,FieldName,NewVal) :</b>  sets the content of a (public) Java field to NewVal -- xrefl.pl",<p>
+<b>    "set_output(Stream):</b>  sets current output stream -- xio.pl",<p>
+<b>    "set_precision(DecimalDigits):</b>  sets precision of decimal computations -- xbuiltins.pl",<p>
+<b>    "set_prolog_flag(F,X):</b>  sets Prolog flag -- xlib.pl",<p>
+<b>    "set_quickfail(V,OldV):</b>  sets flag forcing quick failure (higher) or more error forgiveness -- xlib.pl",<p>
+<b>    "set_random_seed(IntSeed):</b>  sets random seed -- xbuiltins.pl",<p>
+<b>    "set_symgc_force(Bits):</b>  forces symbol grabage collection if more than 2^Bits syms are present -- xbuiltins.pl",<p>
+<b>    "set_verbosity(V,OldV):</b>  sets flag controlling verbosity (higher) of error messages -- xlib.pl",<p>
+<b>    "setof(X,Vs^G,Xs) :</b>  collects set of X such that G into Xs - it may backtrack if variables not in Vs occur in G or if Vs is absent -- bagof.pl",<p>
+<b>    "shm_put(F,S,V), shm_get(F,S,V) shm_remove(F,S):</b>  puts, gets, removes value V in shared memory dir F of shared var S -- xbuiltins.pl",<p>
+<b>    "show_hfun(F,N):</b>  if F is a wf N->[N] function in draws the recursive unfolding graph of N with nordered edges -- graphs.pl",<p>
+<b>    "show_hset(F,N):</b>  if F is a wf N->[N] function in draws the recursive unfolding graph of N withn unordered edges -- graphs.pl",<p>
+<b>    "show_unpair(F,N):</b>  if F is unpair(Z,X,Y) is a wf unpairing function in draws the recursive unfolding graph of N -- graphs.pl",<p>
+<b>    "show_unpair1(F,N):</b>  if F is unpair(Z,X-Y) is a wf unpairing function in draws the recursive unfolding graph of N -- graphs.pl",<p>
+<b>    "sign(N,S):</b>  computes signum of N (-1,0,1) as in S is sign(N) -- xbuiltins.pl",<p>
+<b>    "sleep_ms(Ms):</b>  sleeps a number of miliseconds, approximately -- xbuiltins.pl",<p>
+<b>    "sleep_ns(Ms):</b>  sleeps a number of miliseconds, approximately -- xbuiltins.pl",<p>
+<b>    "sort(Xs,SortedMultisetXs):</b>  sorts a list without removing duplicates -- sort.pl",<p>
+<b>    "sort(Xs,SortedSetXs):</b>  sorts a list then removes duplicates -- sort.pl",<p>
+<b>    "spawn_agent(Dir,ProcessArgs,Name,AgentArgs):</b>  starts agent in given Dir in new lprolog process - assumes lprolog script in PATH -- agent.pl",<p>
+<b>    "spawn_agent(Name):</b>  starts named agent in separate process in current directory -- agent.pl",<p>
+<b>    "spawn_agent(Name,AgentArgs):</b>  starts agent in new lprolog process than sends AgentArgs as separate commands to it -- agent.pl",<p>
+<b>    "spawn_agent_group(Name,Agents):</b>  spawns a process controlled by agent Name, with each Agent on its thread -- agent.pl",<p>
+<b>    "spawn_quiet_agent(Dir,ProcessArgs,Name,AgentArgs):</b>  starts quiet agent with no window - assumes lprolog script in PATH - then runs AgentArgs -- agent.pl",<p>
+<b>    "spawn_quiet_agent(Name):</b>  starts quiet agent with no window - assumes lprolog script in PATH -- agent.pl",<p>
+<b>    "spawn_quiet_agent_with_broker(BrokerPort,Name,Args):</b>  spawns new broker on given port and then service Agent -- agent.pl",<p>
+<b>    "spawn_with_broker(AgentKind,BrokerPort,Name,Args):</b>  starts broker at BrokerPort and launches agent in separate process -- agent.pl",<p>
+<b>    "spawn_with_broker(BrokerPort,Name,Args):</b>  spawns new broker on given port and then gui Agent -- agent.pl",<p>
+<b>    "split_at(N,Xs,Ys,Zs):</b>  splits into first N elements Ys of list Xs and other elements Zs (if any) -- lists.pl",<p>
+<b>    "split_to_groups(K,Xs,Xss):</b>  splits Xs into a list of K lists -- lists.pl",<p>
+<b>    "split_to_size(K,Xs,Xss):</b>  splits Xs into a list of lists of size K or less each -- lists.pl",<p>
+<b>    "start_broker:</b>  starts a broker in current process unless one is running on current host - therefore it never fails -- broker.pl",<p>
+<b>    "statistics:</b>  prints out stats about various data areas -- xlib.pl",<p>
+<b>    "stdio(I):</b>  returns standard input/output - an interactor usable as both streams -- xio.pl",<p>
+<b>    "stop(E):</b>  stops an Interactor (an engine in particular) -- engine.pl",<p>
+<b>    "stop:</b>  stops current engine -- engine.pl",<p>
+<b>    "stop_agent(Name):</b>  stops agents - currently it only works if started with new_s_agent -- agent.pl",<p>
+<b>    "stop_agent_trace:</b>  stop tracer -- agent.pl",<p>
+<b>    "stop_all_agents:</b>  stops all agents and then stops the broker - the caller, if one of them, is a victim too -- broker.pl",<p>
+<b>    "stop_broker:</b>  stops the broker running on this host - fails if no such broker runs -- broker.pl",<p>
+<b>    "stop_inner_server(IServer):</b>  stops an inner server -- xnet.pl",<p>
+<b>    "stop_interactor(Interactor):</b>  stops an interactor -- xbuiltins.pl",<p>
+<b>    "stop_s_console(H,P):</b>  stops s_console at H,P -- gui.pl",<p>
+<b>    "stop_s_console(P):</b>  stops s_console on this host at P -- gui.pl",<p>
+<b>    "sub_atom(Atom, Before, Length, After, Sub_atom):</b>  true if Sub_atom is in Atom of length Length with Before characters preceding it and After characters following it. -- shared.pl",<p>
+<b>    "sub_list(Cs, Before,Length,After, Xs):</b>  true if Cs is a list of length Length with Before elements preceding it and After elements following it. -- shared.pl",<p>
+<b>    "sub_string/5:</b>  same as sub_list/5 -- shared.pl",<p>
+<b>    "sublist_of_length(K,Xs,Ys):</b>  generates sublists of Xs of length K -- sort.pl",<p>
+<b>    "succ(N,N1) :</b>  computes N1 successor of N -- builtins.pl",<p>
+<b>    "succeeds if there's a broker at default host:</b> port -- broker.pl",<p>
+<b>    "sumlist(Xs,P):</b>  returns P, the product of numbers on list Xs -- lists.pl",<p>
+<b>    "sumlist(Xs,S):</b>  returns S, the sum of numbers on list Xs -- lists.pl",<p>
+<b>    "symgc:</b>  force symbol garbage collection now -- xbuiltins.pl",<p>
+<b>    "symgc_off:</b>  turn off automatic symbol grabage collection -- xbuiltins.pl",<p>
+<b>    "symgc_on:</b>  turn on automatic symbol grabage collection -- xbuiltins.pl",<p>
+<b>    "system(Cmd):</b>  calls an operating system command Cmd !!! BUGGY -- xbuiltins.pl",<p>
+<b>    "system(Dir,CmdList, Output):</b>  launches command in Dir waits until it finishes and returns its Output -- sys.pl",<p>
+<b>    "system(Dir,CmdList,Wait, Process,Output):</b>  launches new OS Process in Dir and returns the Process id to be used by kill_my_process/1 -- sys.pl",<p>
+<b>    "tab(Stream,N):</b>  writes N spaces to Stream -- xio.pl",<p>
+<b>    "take(N,Xs,Ys):</b>  takes the first N elements Ys of list Xs -- lists.pl",<p>
+<b>    "take_at_most(N,G):</b>  generates at most the first N answers of G -- compat.pl",<p>
+<b>    "tell(File), told, telling(File) :</b>  direct output to given file (deprecated) -- xio.pl",<p>
+<b>    "tell_agent_at(AgentConnection,Goal):</b>  tells agent on the other side of Connection to run Goal -- agent.pl",<p>
+<b>    "tell_agent_at(AgentConnection,SimpleGoal):</b>  tells AgentConnection to run SimpleGoal -- agent.pl",<p>
+<b>    "tell_inner_server(IServer,X,G):</b>  gives a task that the server starts executing -- xnet.pl",<p>
+<b>    "tell_interactor(Interactor,Task):</b>  tells Interactor about a Task to be done next time -- xbuiltins.pl",<p>
+<b>    "term_of(File,Term):</b>  scans recursively over files following ':-[File].' commands for terms -- xio.pl",<p>
+<b>    "term_of_string(S,T,Vs):</b>  backtracks over all terms T with vars Vs read from string S -- xio.pl",<p>
+<b>    "term_to_atom(T,A):</b>  writes out term T to atom A -- xio.pl",<p>
+<b>    "there(Host,Port):</b>  sets the pair Host,Port as the server target for Linda operations -- callback_linda.pl",<p>
+<b>    "there(Port):</b>  same as there(localhost,Port) -- callback_linda.pl",<p>
+<b>    "throw(E):</b>  throws an exception E -- engine.pl",<p>
+<b>    "time(Goal):</b>  execute once(Goal) and prints time -- shared.pl",<p>
+<b>    "time(Goal,T):</b>  execute once(Goal) and return time T -- shared.pl",<p>
+<b>    "timed_s_wait(MaxWait,Host,Port):</b>  waits up to MaxWait ms until server on Host:Port is on -- xnet.pl",<p>
+<b>    "to test assumption grammars:</b>  ?-phrase(('#<'([a,b,c]),'#+'(t(99)),'#*'(p(88)),'#-'(t(A)),'#-'(p(B)),'#:'(X),'#>'(As)),Xs,Ys). -- assumptions.pl",<p>
+<b>    "to_boolean(S,B):</b>  converts their string representation to booleans true, false -- xrefl.pl",<p>
+<b>    "to_dot(Cat,FileName,VerboseVs,VerboseEs):</b>  writes out a Cat to a dot file for graphviz visualization -- graphs.pl",<p>
+<b>    "to_engine(Engine,Term) :</b>  sends Term to Engine -- builtins.pl",<p>
+<b>    "to_file(F,T):</b>  saves (large term T, possibly containing serilizable Java objects) to file F -- xbuiltins.pl",<p>
+<b>    "to_linear(T,CT):</b>  converts a term to parser independent representation - ## libs -- cserver.pl",<p>
+<b>    "to_string(N,S):</b>  turns number N to string S -- shared.pl",<p>
+<b>    "to_upper_case(S,T), to_lower_case(S,T):</b>  convert atoms to upper/lower case -- xbuiltins.pl",<p>
+<b>    "token_of(File,T):</b>  backtracks over all tokens in File -- xio.pl",<p>
+<b>    "token_of(File,T):</b>  backtracks over all tokens in given string -- xio.pl",<p>
+<b>    "topcall(Goal) :</b>  calls Goal trying to use clauses from default database -- db.pl",<p>
+<b>    "unify_with_occurs_check(X,Y):</b>  true if X Y unifies subject to occurs check - this algorithm always terminates -- lib.pl",<p>
+<b>    "unprotect_engine(S):</b>  makes sure engine S can be garbage collected -- xbuiltins.pl",<p>
+<b>    "use_gui_printer(Name):</b>  redirectes output to a GUI window -- gui.pl",<p>
+<b>    "used_memory(M):</b>  returns amount of memory in Mbytes used so far by this Java VM -- xbuiltins.pl",<p>
+<b>    "vars_of(Tderm,Vars) :</b> : extracts set of free varibles Vars occurring in Term -- bagof.pl",<p>
+<b>    "wait_agent(Name):</b>  waits until broker and named agent are running -- agent.pl",<p>
+<b>    "wait_for(H,P,Pattern,Constraint):</b>  wait for Pattern on the Linda blackboard at H:P such the Constraint holds -- linda.pl",<p>
+<b>    "wait_for(Pattern,Constraint):</b>  wait for Pattern on the Linda blackboard such the Constraint holds -- bboards.pl",<p>
+<b>    "wcompile(File):</b>  compiles File.pl to File.wam - can be loaded directly with qcompile(File) -- lfix.pl",<p>
+<b>    "wcompile_mt(Files,OutFile):</b>  compiles Files concurrently and merges the results to OutFile - a .wam file -- lfix.pl",<p>
+<b>    "while(C,G):</b>  answers G as far as constraint C holds -- compat.pl",<p>
+<b>    "word_of(File,W):</b>  backtracks over words found in in a file, one at time -- xio.pl",<p>
+<b>    "words2nat(Ws,Ns):</b>  interperses words with spaces while making punctuation look natural -- xio.pl",<p>
+<b>    "words2sentence(Ws,Sentence):</b>  combines words with spaces as needed for a better looking natural language sentence -- xio.pl",<p>
+<b>    "words_code(Ws,C):</b>  backtracks over all char codes in a list of words -- xio.pl",<p>
+<b>    "words_of(File,Words):</b>  converts a File to a list of words -- xio.pl",<p>
+<b>    "write(Stream,Term):</b>  writes term to stream -- xio.pl",<p>
+<b>    "write_codes(Cs):</b>  write each char represented by codes in Cs to stream -- xio.pl",<p>
+<b>    "xappend(File,Db):</b>  adds to Db clauses in compressed file -- db.pl",<p>
+<b>    "xappend(File,Db):</b>  adds to default Db clauses in compressed file -- db.pl",<p>
+<b>    "xclause_of(File,Clause):</b>  backtracks/iterates over clauses in compressed file -- db.pl",<p>
+<b>    "xdb_load(File):</b>  replaces all your databases in memory with the content, indexes included -- db.pl",<p>
+<b>    "xdb_save(File):</b>  saves all your databases to one compressed file, indexes included -- db.pl",<p>
+<b>    "xload(File):</b>  replaces clauses in default Db with clauses in compressed file -- db.pl",<p>
+<b>    "xload(File,Db):</b>  replaces all clauses in Db with clauses in compressed file - make sure indexing is on if needed! -- db.pl",<p>
+<b>    "xsave(File):</b>  saves clause in default Db to compressed file -- db.pl",<p>
+<b>    "xsave(File,Db):</b>  saves clause in database Db to one compressed file -- db.pl",<p>
+<b>    "zipWith(F,Xs,Ys,Zs):</b>  for X in Xs and Y in Zs computes and collects Z in Zs such that F(X,Y,Z) -- lists.pl",<p>
+
+</body>
+</html>

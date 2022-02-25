@@ -30,6 +30,9 @@ the script "to_xjar" to embed them into prolog.jar
 Some features:
 
 - reentrant coroutining engines
+- heap and symbol garbage collections
 - threads
+- arbitrary size integers
+- 64 bit address space
 
 See directory ```bin/progs``` for some typical examples that it can run.
