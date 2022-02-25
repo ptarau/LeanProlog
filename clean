@@ -12,5 +12,5 @@ pushd .
 cd psrc
 rm -f *.wam
 popd
-rm -f lprolog.jar
+#rm -f lprolog.jar # needed for bootstrapping
 rm -f bin/test.pro
