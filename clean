@@ -1,0 +1,16 @@
+pushd .
+cd bin
+rm -f lwam.bp
+cd vm
+cd logic
+rm -f *.class
+cd ..
+cd extensions
+rm -f *.class
+popd
+pushd .
+cd psrc
+rm -f *.wam
+popd
+rm -f lprolog.jar
+rm -f bin/test.pro

@@ -1,0 +1,5 @@
+pushd .
+cd bin
+#echo lco
+java -jar ../lprolog.jar "lco_mt." "halt."
+popd

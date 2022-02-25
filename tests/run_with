@@ -1,0 +1,1 @@
+java -Xmx512M -cp ../bin:../lib/jline.jar vm.logic.Start $1.bp $2 $3 $4 $5

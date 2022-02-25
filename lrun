@@ -1,0 +1,4 @@
+pushd .
+cd bin
+java -Xmx512M -jar ../lprolog.jar ../lprolog.jar $1 $2 $3 $4 $5
+popd

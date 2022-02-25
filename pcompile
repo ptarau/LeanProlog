@@ -1,0 +1,4 @@
+pushd .
+cd compiler
+bp "bpco.pl" "call(and(lboot,halt))"
+popd

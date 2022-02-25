@@ -1,0 +1,7 @@
+pushd .
+cd bin
+jar -cmf manifest.txt lprolog.jar lwam.bp vm
+cp *.jar ..
+rm -f *.jar
+popd
+ls -l *.jar

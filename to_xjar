@@ -1,0 +1,6 @@
+cd lib
+jar xf jline.jar
+jar uf ../lprolog.jar *.txt jline
+rm -r -f META-INF
+rm -r -f jline
+

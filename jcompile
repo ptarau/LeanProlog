@@ -1,0 +1,1 @@
+javac -cp .:lib/jline.jar -O -g -d bin vm/logic/*.java vm/extensions/*.java
