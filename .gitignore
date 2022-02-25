@@ -22,6 +22,6 @@
 hs_err_pid*
 .idea/
 *.iml
-lprolog.jar
+#lprolog.jar # needed for butstapping
 lprolog.sh
 #bin/*.bp
