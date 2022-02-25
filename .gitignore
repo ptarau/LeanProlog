@@ -22,5 +22,6 @@
 hs_err_pid*
 .idea/
 *.iml
-bin/*.jar
+lprolog.jar
+lprolog.sh
 bin/*.bp
